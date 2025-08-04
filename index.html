@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>貪食蛇 - Snake Game</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: white;
+        }
+
+        .game-container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        #gameCanvas {
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            background: #2c3e50;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            display: block;
+            margin: 0 auto;
+        }
+
+        .score-board {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .controls {
+            margin-top: 20px;
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+
+        .game-over {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            display: none;
+        }
+
+        .game-over h2 {
+            color: #ff6b6b;
+            margin-bottom: 15px;
+        }
+
+        .restart-btn {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border: none;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .restart-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .game-container {
+                padding: 20px;
+                margin: 10px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            #gameCanvas {
+                max-width: 100%;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1>🐍 貪食蛇</h1>
+        <div class="score-board">
+            <div>分數: <span id="score">0</span></div>
+            <div>最高分: <span id="highScore">0</span></div>
+        </div>
+        <canvas id="gameCanvas" width="400" height="400"></canvas>
+        <div class="controls">
+            <p>使用 ↑ ↓ ← → 方向鍵控制蛇的移動</p>
+            <p>按 空格鍵 暫停/繼續遊戲</p>
+        </div>
+        
+        <div class="game-over" id="gameOver">
+            <h2>遊戲結束!</h2>
+            <p>你的分數: <span id="finalScore">0</span></p>
+            <button class="restart-btn" onclick="restartGame()">重新開始</button>
+        </div>
+    </div>
+
+    <script src="snake.js"></script>
+</body>
+</html>
